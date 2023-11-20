@@ -6,12 +6,12 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthenticationService {
-  private urlRegister = 'https://academyrise.mywebcommunity.org/register.php'; // Cambiar esto por la URL de la bbdd
-  private urlLogin = 'https://academyrise.mywebcommunity.org/login.php'; // Cambiar esto por la URL de la bbdd
+  private urlRegister = 'https://academyrise.mywebcommunity.org/register.php'; 
+  private urlLogin = 'https://academyrise.mywebcommunity.org/login.php'; 
   
   constructor(private http:HttpClient) { }
 
-  register(email: string, password: string, username: string, role: string): Observable<any> {
+  register(username: string,email: string, password: string, role: string): Observable<any> {
     const datosRegistro = {
       NombreUsuario: username,
       CorreoElectronico: email,
@@ -19,7 +19,7 @@ export class AuthenticationService {
       Rol: role
     };
     console.log(datosRegistro);
-    return this.http.post(`${this.urlRegister}`, datosRegistro);//poner el post te saldra los parametros por separado variable params
+    return this.http.post(`${this.urlRegister}`, datosRegistro);
   }
 
   login(email: string, password: string): Observable<any> {

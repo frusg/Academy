@@ -6,7 +6,6 @@ import { AuthenticationService } from '../services/authentication.service';
 import { Router } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -15,6 +14,10 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [IonicModule, CommonModule, ReactiveFormsModule,HttpClientModule]
 })
 export class LoginPage implements OnInit {
+
+openHome() {
+  this.navCtrl.navigateForward('/home');
+}
 
   public loginForm: FormGroup = new FormGroup({});
 
@@ -25,23 +28,11 @@ export class LoginPage implements OnInit {
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
-/*   openHome() {
-    this.navCtrl.navigateForward('/home');
-  } */
 
-  openHomeDesdeLogin() {
-    this.navCtrl.navigateForward('/home');
-  }
-  home(){
-    this.navCtrl.navigateForward('/home');
-  }
-  ngOnInit() {
-
-  }
+  ngOnInit() { }
 
     login() {
     if (!this.loginForm.valid) {
-      // Mostrar algún error al usuario, como una alerta
       this.showAlert('Error', 'Por favor, ingrese todos los campos.');
       return;
     }

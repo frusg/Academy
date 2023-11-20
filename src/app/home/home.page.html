@@ -10,13 +10,6 @@
 
 <ion-content [fullscreen]="true">
 
-<!--   @if (a > b) {
-    {{a}} is greater than {{b}}
-  } @else if (b > a) {
-    {{a}} is less than {{b}}
-  } @else {
-    {{a}} is equal to {{b}}
-  } -->
   @for (curso of cursos; track curso.titulo) {
     
     <ion-card> 
@@ -31,7 +24,7 @@
       <ion-button fill="clear">Subscribe</ion-button>
     </ion-card>
   } @empty {
-    <li> There are no items. </li>
+    <li> No hay cursos. </li>
   }
   
 </ion-content>

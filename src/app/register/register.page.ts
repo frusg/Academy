@@ -54,7 +54,7 @@ export class RegisterPage implements OnInit {
       },
       error: (err) => {
         console.error(err);
-        this.showAlert('Error de Registro', err.error.message);
+        this.showAlert('El email ya esta registrado', err.error.message);
       }
     });
   }
