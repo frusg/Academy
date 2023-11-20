@@ -67,4 +67,7 @@ export class RegisterPage implements OnInit {
     }).then(alert => alert.present());
   }
 
+  cancela() {
+    this.navCtrl.navigateForward('/home');
+  }
 }

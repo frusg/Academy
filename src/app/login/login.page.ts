@@ -33,7 +33,7 @@ export class LoginPage implements OnInit {
     this.navCtrl.navigateForward('/home');
   }
   home(){
-    this.router.navigate(['home']);
+    this.navCtrl.navigateForward('/home');
   }
   ngOnInit() {
 
