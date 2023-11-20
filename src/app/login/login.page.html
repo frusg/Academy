@@ -1,0 +1,28 @@
+<ion-content class="ion-padding">
+  <ion-header [translucent]="true">
+    <ion-toolbar>
+      <ion-title size="large">Login</ion-title>
+      <ion-buttons slot="end">
+        <ion-button routerLink="/" color="primary" size="small" (click)="home()">Home</ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <ion-list>
+
+      <ion-item class="full-width">
+        <ion-label position="stacked">Username</ion-label>
+        <ion-input formControlName="username" type="text" ></ion-input>
+      </ion-item>
+
+      <ion-item class="full-width">
+        <ion-label position="stacked">Password</ion-label>
+        <ion-input formControlName="password" type="text" ></ion-input>
+      </ion-item>
+
+
+    </ion-list>
+    <ion-button type="submit" expand="block" [disabled]="!loginForm.valid">Registrar</ion-button>
+  </form>
+</ion-content>

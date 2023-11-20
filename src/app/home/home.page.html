@@ -2,8 +2,8 @@
   <ion-toolbar>
     <ion-title size="large">AcademyRise</ion-title>
     <ion-buttons slot="end" class="button-round" >
-      <ion-button color="primary" size="small" >Iniciar Sesión</ion-button>
-      <ion-button color="danger" size="small" >Registrarse</ion-button>
+      <ion-button color="primary" size="small" (click)="openLogin()" >Iniciar Sesión</ion-button>
+      <ion-button color="danger" size="small" (click)="openRegister()" >Registrarse</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -22,16 +22,11 @@
     <ion-card> 
       <!-- <img src="{{ curso.imagen }}" alt="Imagen del curso" class="curso-imagen"/>  --> <!-- se podra poner la img del curso de fondo mirar ejemplo temps -->
       <ion-card-header>
-        
-        <ion-card-title >{{ curso.titulo }}</ion-card-title> 
-        
-        <ion-card-subtitle>{{ curso.autor }}</ion-card-subtitle>
-         
+        <ion-card-title >{{ curso.titulo }}</ion-card-title>  
+        <ion-card-subtitle>{{ curso.autor }}</ion-card-subtitle>   
       </ion-card-header>
-    
-      <ion-card-content>
-        {{ curso.descripcion }}
-      </ion-card-content>
+      
+      <ion-card-content>{{ curso.descripcion }}</ion-card-content>
     
       <ion-button fill="clear">Subscribe</ion-button>
     </ion-card>

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent,IonButtons,IonButton,IonCardContent,IonCard,IonCardHeader, IonCardTitle, IonCardSubtitle } from '@ionic/angular/standalone';
+import { Router } from '@angular/router';
+import { IonHeader, IonToolbar, IonTitle, IonContent,IonButtons,IonButton,IonCardContent,IonCard,IonCardHeader, IonCardTitle, IonCardSubtitle, NavController } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +14,7 @@ export class HomePage {
   b: 2 = 2;
 
 
-  constructor() {}
+  constructor(private router:Router,private navCtrl:NavController) {}
 
 
   cursos = [
@@ -48,5 +49,11 @@ export class HomePage {
   ];
 
 
+  openLogin() {
+    this.navCtrl.navigateForward('/login');
+  }
 
+  openRegister() {
+    this.navCtrl.navigateForward('/register');
+  }
 }
