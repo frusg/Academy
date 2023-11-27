@@ -1,20 +1,52 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { IonHeader, IonToolbar, IonTitle, IonContent,IonButtons,IonButton,IonCardContent,IonCard,IonCardHeader, IonCardTitle, IonCardSubtitle, NavController } from '@ionic/angular/standalone';
+import { IonicModule } from '@ionic/angular';
+
+import {NavController } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
   standalone: true,
-  imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonButtons, IonButton,IonCardContent,IonCard,IonCardHeader,IonCardTitle,IonCardSubtitle],
+  imports: [IonicModule,FormsModule],
 })
-export class HomePage {
-  a: 1 = 1;
-  b: 2 = 2;
-
+export class HomePage implements OnInit{
+  searchTerm: string = '';
+  //cursos: any[] = [];
+  filteredCursos: any[] = [];
+  cursoService: any;
 
   constructor(private router:Router,private navCtrl:NavController) {}
+
+  ngOnInit(): void {
+    // Inicializar cursos y filteredCursos, posiblemente con datos de un servicio
+    this.filteredCursos = this.cursos;
+
+// Obtiene los cursos desde un servicio y los asigna a las propiedades de la clase
+/* this.cursoService.getCursos().subscribe((cursos: any[]) => {
+  this.cursos = cursos;
+  this.filteredCursos = cursos;
+ */
+
+
+  }
+
+
+
+  filterCards() {
+    this.filteredCursos = this.searchTerm
+      ? this.cursos.filter(curso =>
+          curso.titulo.toLowerCase().includes(this.searchTerm.toLowerCase())
+        )
+      : this.cursos;
+  }
+  
+  trackCurso(index: any, curso: any) {
+    return curso ? curso.titulo : undefined;
+  }
+
 
 
   cursos = [

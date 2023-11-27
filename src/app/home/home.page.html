@@ -1,4 +1,4 @@
-<ion-header [translucent]="true">
+<ion-header [translucent]="true"><!-- TODO:PONER UN IF PARA CUANDO ESTE LOGUEADO NO APAREZCA LOS BOTONES DE REGISTRAR Y LOGIN Y APARAEZCA EL DEL PERFIL -->
   <ion-toolbar>
     <ion-title size="large">AcademyRise</ion-title>
     <ion-buttons slot="end" class="button-round" >
@@ -10,7 +10,10 @@
 
 <ion-content [fullscreen]="true">
 
-  @for (curso of cursos; track curso.titulo) {
+
+  <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="filterCards()"></ion-searchbar>
+
+  @for (curso of filteredCursos; track curso.titulo) {
     
     <ion-card> 
       <!-- <img src="{{ curso.imagen }}" alt="Imagen del curso" class="curso-imagen"/>  --> <!-- se podra poner la img del curso de fondo mirar ejemplo temps -->
@@ -24,7 +27,28 @@
       <ion-button fill="clear">Subscribe</ion-button>
     </ion-card>
   } @empty {
-    <li> No hay cursos. </li>
+    <li> No hay cursos. </li><!-- TODO:PONER UN SHOWALERT PARA MOSTRAR EL MENSAJE  -->
   }
-  
+
+
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button>
+      <ion-icon name="chevron-up-circle"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button>
+        <ion-icon name="document"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button>
+        <ion-icon name="color-palette"></ion-icon><!-- TODO:HACER QUE VAYA A LA PAGINA DE AYUDA -->
+      </ion-fab-button>
+      <ion-fab-button>
+        <ion-icon name="globe"></ion-icon><!-- TODO:HACER QUE VAYA A LA PAGINA DE DUDAS -->
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+
+
 </ion-content>
+
