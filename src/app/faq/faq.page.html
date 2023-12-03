@@ -1,0 +1,38 @@
+<ion-header [translucent]="true"><!-- TODO:IMPLEMENTAR LAS FUNCIONES CURSOS Y PERFIL -->
+  <ion-toolbar>
+    <ion-title size="large">FAQ</ion-title>
+    <ion-buttons slot="end" class="button-round" >
+      @if (!usuarioLogueado) {
+        <ion-button color="primary" size="large" (click)="openHome()">Home</ion-button>
+        <ion-button color="primary" size="large" (click)="openLogin()" >Iniciar Sesión</ion-button>
+        <ion-button color="danger" size="large" (click)="openRegister()" >Registrarse</ion-button>
+      }@else {
+        <ion-button color="primary" size="large" (click)="openHome()">Home</ion-button>
+        <ion-button  color="primary" size="large" (click)="openCursos()">Cursos</ion-button>
+        <ion-button  color="danger" size="large" (click)="openProfile()">Perfil</ion-button>
+      } 
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+<!--   <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="small">FAQ</ion-title>
+    </ion-toolbar>
+  </ion-header> -->
+  <ion-accordion-group expand="inset">
+
+    @for (faq of faqs; track faq.id) { <!-- TODO: COJER BIEN LAS PREGUNTAS -->
+      <ion-accordion>
+        <ion-item slot="header" color="rose">
+          <ion-label>{{ faq.pregunta }}</ion-label>
+        </ion-item>
+        <div class="ion-padding" slot="content">
+          {{ faq.respuesta }}
+        </div>
+      </ion-accordion>
+    }
+  </ion-accordion-group>
+</ion-content>
+

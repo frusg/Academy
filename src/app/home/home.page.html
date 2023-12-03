@@ -1,9 +1,15 @@
-<ion-header [translucent]="true"><!-- TODO:PONER UN IF PARA CUANDO ESTE LOGUEADO NO APAREZCA LOS BOTONES DE REGISTRAR Y LOGIN Y APARAEZCA EL DEL PERFIL -->
+<ion-header [translucent]="true"><!-- TODO:IMPLEMENTAR LAS FUNCIONES CURSOS Y PERFIL -->
   <ion-toolbar>
     <ion-title size="large">AcademyRise</ion-title>
     <ion-buttons slot="end" class="button-round" >
-      <ion-button color="primary" size="small" (click)="openLogin()" >Iniciar Sesión</ion-button>
-      <ion-button color="danger" size="small" (click)="openRegister()" >Registrarse</ion-button>
+      @if (!usuarioLogueado) {
+        <ion-button color="primary" size="small" (click)="openLogin()" >Iniciar Sesión</ion-button>
+        <ion-button color="danger" size="small" (click)="openRegister()" >Registrarse</ion-button>
+      }@else {
+        <ion-button  color="primary" size="large" (click)="openCursos()">Cursos</ion-button>
+        <ion-button  color="danger" size="large" (click)="openProfile()">Perfil</ion-button>
+        
+      } 
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -14,7 +20,6 @@
   <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="filterCards()"></ion-searchbar>
 
   @for (curso of filteredCursos; track curso.titulo) {
-    
     <ion-card> 
       <!-- <img src="{{ curso.imagen }}" alt="Imagen del curso" class="curso-imagen"/>  --> <!-- se podra poner la img del curso de fondo mirar ejemplo temps -->
       <ion-card-header>
@@ -27,20 +32,23 @@
       <ion-button fill="clear">Subscribe</ion-button>
     </ion-card>
   } @empty {
-    <li> No hay cursos. </li><!-- TODO:PONER UN SHOWALERT PARA MOSTRAR EL MENSAJE  -->
+    <div class="empty-container">
+      <ion-icon name="warning-outline"></ion-icon>
+      <p>No hay cursos disponibles.</p>
+    </div>
   }
-
-
-
+<!-- TODO:PODRIAMOS PONER UNOS TABS PARA PONER CURSOS/ PERFIL/ MIS CURSOS/ LOGOUT /-->
+  <!--TODO:cuando te logueas o haces log out hay que recargar aun estando la redireccion mirar esto-->
   <ion-fab slot="fixed" vertical="bottom" horizontal="end">
     <ion-fab-button>
-      <ion-icon name="chevron-up-circle"></ion-icon>
+      <!-- <ion-icon name="chevron-up-circle"></ion-icon> -->
+      
     </ion-fab-button>
     <ion-fab-list side="top">
-      <ion-fab-button>
-        <ion-icon name="document"></ion-icon>
+      <ion-fab-button color="danger" size="small" (click)="openFaq()">FAQ
+        <ion-icon name="person-circle-outline"></ion-icon>
       </ion-fab-button>
-      <ion-fab-button>
+      <ion-fab-button color="danger" size="small"  (click)="logout()">Log Out
         <ion-icon name="color-palette"></ion-icon><!-- TODO:HACER QUE VAYA A LA PAGINA DE AYUDA -->
       </ion-fab-button>
       <ion-fab-button>
@@ -49,6 +57,4 @@
     </ion-fab-list>
   </ion-fab>
 
-
 </ion-content>
-

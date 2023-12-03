@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
-
-import {NavController } from '@ionic/angular/standalone';
+import {AlertController, NavController } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-home',
@@ -12,28 +11,50 @@ import {NavController } from '@ionic/angular/standalone';
   standalone: true,
   imports: [IonicModule,FormsModule],
 })
+
 export class HomePage implements OnInit{
   searchTerm: string = '';
-  //cursos: any[] = [];
   filteredCursos: any[] = [];
   cursoService: any;
-
-  constructor(private router:Router,private navCtrl:NavController) {}
+  constructor(private router:Router,private navCtrl:NavController, private alertController: AlertController) {}
+  usuarioLogueado: boolean | undefined;
 
   ngOnInit(): void {
-    // Inicializar cursos y filteredCursos, posiblemente con datos de un servicio
     this.filteredCursos = this.cursos;
-
-// Obtiene los cursos desde un servicio y los asigna a las propiedades de la clase
-/* this.cursoService.getCursos().subscribe((cursos: any[]) => {
-  this.cursos = cursos;
-  this.filteredCursos = cursos;
- */
-
-
+    this.verificarUsuarioLogueado();
   }
 
+  openLogin() {
+    this.navCtrl.navigateForward('/login');
+  }
 
+  openRegister() {
+    this.navCtrl.navigateForward('/register');
+  }
+
+  openFaq() {
+    this.navCtrl.navigateForward('/faq');
+  }
+
+  openCursos() {
+    this.navCtrl.navigateForward('/cursos');
+  }
+
+  openProfile() {
+    this.navCtrl.navigateForward('/perfil');
+  }
+
+  logout() {
+    localStorage.removeItem('currentUser'); 
+    this.router.navigateByUrl('/login').then(() => {
+      window.location.reload(); 
+    });
+  }
+  
+  verificarUsuarioLogueado() {
+    const userData = localStorage.getItem('currentUser');
+    this.usuarioLogueado = !!userData;
+  }
 
   filterCards() {
     this.filteredCursos = this.searchTerm
@@ -41,13 +62,19 @@ export class HomePage implements OnInit{
           curso.titulo.toLowerCase().includes(this.searchTerm.toLowerCase())
         )
       : this.cursos;
+      if (!this.cursos) {
+        this.showAlert('Error', 'No hay cursos.');
+        return;
+      }
   }
   
-  trackCurso(index: any, curso: any) {
-    return curso ? curso.titulo : undefined;
+  private showAlert(header: string, message: string) {
+    this.alertController.create({
+      header: header,
+      message: message,
+      buttons: ['OK']
+    }).then(alert => alert.present());
   }
-
-
 
   cursos = [
     {
@@ -79,13 +106,4 @@ export class HomePage implements OnInit{
       video: 'url_al_video_del_curso'
     }
   ];
-
-
-  openLogin() {
-    this.navCtrl.navigateForward('/login');
-  }
-
-  openRegister() {
-    this.navCtrl.navigateForward('/register');
-  }
 }

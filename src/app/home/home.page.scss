@@ -31,3 +31,19 @@
   height: 50px;
   object-fit: cover; /* Esto asegura que la imagen cubra el área sin distorsionarse */
 }
+
+.empty-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  text-align: center;
+  color: var(--ion-color-medium);
+  font-size: 1.2em;
+}
+
+.empty-container ion-icon {
+  font-size: 6em;
+  margin-bottom: 0.5em;
+}
