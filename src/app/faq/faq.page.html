@@ -2,7 +2,8 @@
   <ion-toolbar>
     <ion-title size="large">FAQ</ion-title>
     <ion-buttons slot="end" class="button-round" >
-      @if (!usuarioLogueado) {
+      <ion-button color="primary" size="large" (click)="openHome()">Home</ion-button>
+<!--       @if (!usuarioLogueado) {
         <ion-button color="primary" size="large" (click)="openHome()">Home</ion-button>
         <ion-button color="primary" size="large" (click)="openLogin()" >Iniciar Sesión</ion-button>
         <ion-button color="danger" size="large" (click)="openRegister()" >Registrarse</ion-button>
@@ -10,7 +11,7 @@
         <ion-button color="primary" size="large" (click)="openHome()">Home</ion-button>
         <ion-button  color="primary" size="large" (click)="openCursos()">Cursos</ion-button>
         <ion-button  color="danger" size="large" (click)="openProfile()">Perfil</ion-button>
-      } 
+      }  -->
     </ion-buttons>
   </ion-toolbar>
 </ion-header>

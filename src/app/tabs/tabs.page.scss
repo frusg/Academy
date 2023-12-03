@@ -1,0 +1,7 @@
+.tab-icon {
+color: var(--ion-color-primary, blue); /* Utiliza el color primario o azul por defecto */
+}
+ion-tab-button {
+--color: var(--ion-color-medium); /* Color por defecto */
+--color-selected: var(--ion-color-primary); /* Color cuando la pestaña está seleccionada */
+}
